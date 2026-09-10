@@ -4,11 +4,11 @@ const CATALOG_META = {
     "beige-brown": {
       "count": 134
     },
-    "red": {
-      "count": 98
+    "blue": {
+      "count": 114
     },
-    "white": {
-      "count": 58
+    "gray-black": {
+      "count": 78
     },
     "green": {
       "count": 95
@@ -16,11 +16,11 @@ const CATALOG_META = {
     "pink-purple": {
       "count": 49
     },
-    "blue": {
-      "count": 114
+    "red": {
+      "count": 98
     },
-    "gray-black": {
-      "count": 78
+    "white": {
+      "count": 58
     },
     "yellow-orange": {
       "count": 74

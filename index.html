@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NAPKINS] PhotoKitchen Props Catalog</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="data/meta.js"></script>
+<style>
+
+  /* ── PASSWORD GATE ── */
+  #pw-gate {
+    position: fixed;
+    inset: 0;
+    background: #1A1A18;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #pw-gate.hidden { display: none; }
+  .pw-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 320px;
+  }
+  .pw-logo {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+  }
+  .pw-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #666;
+    font-family: 'DM Mono', monospace;
+  }
+  .pw-input-wrap {
+    width: 100%;
+    position: relative;
+  }
+  #pw-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: #2A2A28;
+    border: 1.5px solid #3A3A38;
+    border-radius: 6px;
+    padding: 11px 44px 11px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.15s;
+    letter-spacing: 0.08em;
+  }
+  #pw-input::placeholder { color: #555; }
+  #pw-input:focus { border-color: #666; }
+  #pw-input.error { border-color: #D94040; animation: pw-shake 0.3s ease; }
+  #pw-submit {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+  }
+  #pw-submit:hover { color: #fff; }
+  .pw-error-msg {
+    font-size: 10px;
+    color: #D94040;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-height: 14px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+  }
+  @keyframes pw-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F2EE;
+    --chip-active: var(--ink);
+    --focus-color: var(--ink);
+    --hover-color: var(--ink);
+    --surface: #FFFFFF;
+    --ink: #1A1A18;
+    --ink-soft: #6B6860;
+    --ink-faint: #C4C0B8;
+    --accent: #D94040;
+    --accent-pale: #F9EAEA;
+    --tag-bg: #EFEFEB;
+    --tag-border: #DEDAD4;
+    --radius: 4px;
+    --card-radius: 8px;
+  }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-meta {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── SEARCHBAR ── */
+  .searchbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--tag-border);
+    overflow: hidden;
+  }
+
+  .searchbar .search-wrap {
+    width: 100%;
+  }
+
+  .searchbar #search {
+    border-radius: 0;
+    border: none;
+    border-bottom: none;
+    width: 100%;
+    padding: 14px 15px 14px 37px;
+  }
+
+  /* ── LAYOUT ── */
+  .shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 64px);
+    align-items: start;
+  }
+
+  /* ── SIDEBAR COL ── */
+  .sidebar-col {
+    background: var(--surface);
+    border-right: 1px solid var(--tag-border);
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    flex: 1;
+    padding: 28px 20px;
+    overflow-y: auto;
+  }
+
+  .sidebar-section {
+    margin-bottom: 28px;
+  }
+
+  .sidebar-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  /* Search */
+  .search-wrap {
+    position: relative;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--ink-faint);
+  }
+
+  #search {
+    width: 100%;
+    padding: 9px 10px 9px 32px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  #search:focus { border-color: var(--ink); }
+  #search::placeholder { color: var(--ink-faint); }
+
+  /* Filter chips */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1.5px solid var(--tag-border);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .chip:hover { border-color: var(--hover-color); color: var(--hover-color); }
+  .chip-archive {
+    background: #EFEFEB !important;
+    color: var(--ink) !important;
+    border-color: var(--ink) !important;
+  }
+  .chip-archive.active {
+    background: var(--ink) !important;
+    color: #fff !important;
+    border-color: var(--ink) !important;
+  }
+  .archived-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .archived-overlay svg {
+    color: #fff;
+    opacity: 0.9;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+  }
+  .chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .color-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .color-swatch {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  .reset-btn {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.15s;
+    margin-top: 6px;
+  }
+
+  .reset-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* ── MAIN ── */
+  main {
+    padding: 28px 32px;
+  }
+
+  .results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .results-count {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .results-count span {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .sort-select {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 6px 24px 6px 9px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 7px center;
+    background-size: 8px;
+    color: var(--ink);
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    height: 32px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* ── GRID ── */
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--tag-border);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeIn 0.25s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+    transform: translateY(-2px);
+  }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #F0EDE8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .btn-replace-photo {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: var(--ink-soft);
+  }
+  .card-img:hover .btn-replace-photo {
+    opacity: 1;
+  }
+
+  .card-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-faint);
+  }
+
+  .card-img-placeholder svg { opacity: 0.4; }
+  .card-img-placeholder span {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .color-stripe {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card-body {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .card-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+  /* Inline name edit - textarea that fills title area naturally */
+  .name-edit-input {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--ink);
+    border: none;
+    border-bottom: 1.5px solid var(--ink);
+    background: transparent;
+    outline: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .card-note {
+    display: block;
+    width: 100%;
+    font-size: 10px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: -4px;
+  }
+  #add-notes::placeholder, #edit-notes::placeholder,
+  #add-name::placeholder, #edit-name::placeholder {
+    color: #c8c4bc;
+    font-style: italic;
+  }
+  @keyframes blink-fade {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
+  .describing #add-name,
+  .describing #edit-name {
+    animation: blink-fade 1.1s ease-in-out infinite;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tag.color-tag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .qty-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+
+  .id-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255,255,255,0.3);
+    color: var(--ink-soft);
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .card:hover .id-tag {
+    opacity: 1;
+  }
+
+  /* ── EMPTY STATE ── */
+  #empty {
+    display: none;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--ink-soft);
+  }
+
+  #empty.show { display: block; }
+  #empty h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  #empty p { font-size: 13px; }
+
+  /* ── LANDING PAGE ── */
+  #landing-banner {
+    display: none;
+    grid-column: 1 / -1;
+  }
+  #landing-banner.show { display: block; }
+  .landing-wrap { padding: 0 0 40px; }
+  .landing-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    margin-top: 6px;
+  }
+  .landing-colors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 28px;
+  }
+  .landing-color-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    background: var(--surface);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .landing-color-card:hover { background: var(--tag-bg); border-color: rgba(0,0,0,0.18); }
+  .landing-color-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .landing-color-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .landing-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .landing-two-col { grid-template-columns: 1fr; } }
+  .landing-cats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .landing-cat-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 15px;
+    background: var(--surface);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  .landing-cat-icon {
+    font-size: 16px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .landing-cat-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .landing-cat-desc {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    line-height: 1.3;
+  }
+  /* ── HOW TO USE (inline, single container) ── */
+  .landing-howto {
+    background: var(--surface);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 4px 0;
+  }
+  .howto-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 14px;
+  }
+  .howto-step + .howto-step {
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .howto-step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--ink);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .howto-step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .howto-step-desc {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    line-height: 1.3;
+  }
+
+  /* ── SCROLLBAR ── */
+  aside::-webkit-scrollbar { width: 4px; }
+  aside::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 2px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .shell { grid-template-columns: 1fr; }
+    .sidebar-col { position: static; height: auto; flex-direction: column; }
+    aside { position: static; height: auto; }
+  }
+
+  /* color dropdown */
+  .color-select-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .color-dot {
+    position: absolute;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.15);
+    flex-shrink: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: background 0.2s, opacity 0.2s;
+    z-index: 1;
+  }
+  #color-select {
+    width: 100%;
+    font-family: 'Syne', sans-serif;
+    font-size: 21px;
+    background: var(--bg);
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    padding: 9px 28px 9px 37px;
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.15s;
+  }
+  #color-select:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+
+  /* ── EDIT MODAL ── */
+  .edit-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .edit-modal-overlay.open { display: flex; }
+
+  .edit-id {
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .edit-photo-area {
+    border: 2px dashed var(--tag-border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .edit-photo-area:hover { border-color: var(--ink); background: var(--bg); }
+  .edit-photo-area.has-photo { border-style: solid; border-color: var(--ink-faint); padding: 0; overflow: hidden; }
+  .edit-photo-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .edit-photo-preview {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+  }
+  .edit-photo-placeholder {
+    color: var(--ink-soft);
+    font-size: 11px;
+    pointer-events: none;
+  }
+  .edit-photo-placeholder svg { display: block; margin: 0 auto 6px; opacity: 0.4; }
+
+  /* ── ADD VESSEL BUTTON (Save / Add Item) ── */
+  .save-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--ink);
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 7px 12px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .save-btn:hover {
+    border-color: var(--ink);
+  }
+
+  /* ── MODAL SHARED FIELD LAYOUTS ── */
+  .modal-qty-notes-row {
+    display: grid;
+    grid-template-columns: calc(25% - 7.5px) calc(25% - 7.5px) auto;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 14px;
+  }
+  .modal-qty-field,
+  .modal-notes-field { margin-bottom: 0 !important; }
+
+  /* ── ARCHIVE TOGGLE ── */
+  .broken-check-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .broken-field-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+  .broken-check-input { display: none; }
+  .broken-check-box {
+    width: 100%;
+    height: 34px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    color: var(--ink-faint);
+    box-sizing: border-box;
+  }
+  .broken-check-input:checked ~ .broken-check-box {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+  .broken-check-box:hover { border-color: var(--ink); color: var(--ink-soft); }
+  .broken-check-input:checked ~ .broken-check-box:hover { background: var(--ink); color: #fff; }
+
+  /* Hide spinners on qty inputs */
+  #edit-qty::-webkit-inner-spin-button,
+  #edit-qty::-webkit-outer-spin-button,
+  #add-qty::-webkit-inner-spin-button,
+  #add-qty::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  #edit-qty, #add-qty { -moz-appearance: textfield; appearance: textfield; }
+
+  /* Photo area — natural aspect ratio once image loaded */
+  .add-photo-area.has-photo,
+  .edit-photo-area.has-photo {
+    aspect-ratio: unset;
+    padding: 0;
+    border-style: solid;
+    border-color: var(--ink-faint);
+    overflow: hidden;
+  }
+  .add-photo-preview,
+  .edit-photo-preview {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .add-vessel-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 7px 12px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .add-vessel-btn:hover { opacity: 0.82; }
+  .add-vessel-btn svg { flex-shrink: 0; }
+
+  /* ── ADD ITEM MODAL ── */
+  .add-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .add-modal-overlay.open { display: flex; }
+  .add-modal {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    width: 480px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    font-family: 'DM Mono', monospace;
+  }
+  .add-modal h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .add-modal-section {
+    margin-bottom: 18px;
+  }
+  .add-modal-section label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .add-modal-section input[type="text"],
+  .add-modal-section input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 8px 10px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .add-modal-section textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 8px 10px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    resize: none;
+    overflow: hidden;
+    min-height: 36px;
+    line-height: 1.5;
+    display: block;
+  }
+  .add-modal-section textarea:focus { border-color: var(--ink); }
+  .add-modal-section select {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 8px 28px 8px 10px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 9px center;
+    background-size: 8px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+  .add-modal-section input:focus,
+  .add-modal-section select:focus {
+    border-color: var(--ink);
+  }
+  .add-photo-area {
+    border: 2px dashed var(--tag-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+  .add-photo-area:hover { border-color: var(--ink); background: var(--bg); }
+  .add-photo-area.has-photo { border-style: solid; border-color: var(--ink-faint); padding: 0; overflow: hidden; border-radius: 8px; }
+  .add-photo-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .add-photo-placeholder {
+    color: var(--ink-soft);
+    font-size: 11px;
+    pointer-events: none;
+  }
+  .add-photo-placeholder svg { display: block; margin: 0 auto 8px; opacity: 0.4; }
+  .add-modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    justify-content: flex-end;
+  }
+  .add-cancel-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 8px 16px;
+    border: 1.5px solid var(--tag-border);
+    border-radius: var(--radius);
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .add-cancel-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .add-confirm-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .add-confirm-btn:hover { opacity: 0.82; }
+  .add-generated-id {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    min-height: 14px;
+  }
+  .add-generated-id span { color: var(--ink); font-weight: 600; }
+
+  /* Auto-describe loading state */
+  .add-modal-section.describing input {
+    border-color: var(--ink-faint);
+    color: transparent;
+  }
+  .add-modal-section.describing input::placeholder {
+    color: #c8c4bc;
+    font-style: italic;
+    animation: pulse-label 1.2s ease-in-out infinite;
+  }
+  .add-modal-section.describing label::after {
+    content: ' — generating…';
+    color: var(--ink-faint);
+    font-style: italic;
+    animation: pulse-label 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse-label {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo">PhotoKitchen</div>
+    <div class="pw-label">Props Catalog — Team Access</div>
+    <div class="pw-input-wrap">
+      <input id="pw-input" type="password" placeholder="Enter password" autocomplete="off" />
+      <button id="pw-submit" type="button" aria-label="Unlock">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+    <div class="pw-error-msg" id="pw-error"></div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">PhotoKitchen</div>
+  <span class="header-meta">Props Catalog 2.0 — Napkins</span>
+</header>
+
+<div class="shell">
+  <!-- SIDEBAR COL -->
+  <div class="sidebar-col">
+    <div class="searchbar">
+      <div class="search-wrap">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="search" type="text" placeholder="Search…">
+      </div>
+    </div>
+    <aside>
+
+        <div class="sidebar-section">
+      <div class="sidebar-label">Color</div>
+      <div class="color-select-wrap">
+        <span class="color-dot" id="color-dot"></span>
+        <select id="color-select">
+          <option value="">Select a Color</option>
+          <option value="Red">Red</option>
+          <option value="Green">Green</option>
+          <option value="Yellow/Orange">Yellow / Orange</option>
+          <option value="Pink/Purple">Pink / Purple</option>
+          <option value="Beige/Brown">Beige / Brown</option>
+          <option value="Blue">Blue</option>
+          <option value="Gray/Black">Gray / Black</option>
+          <option value="White">White</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Category</div>
+      <div class="chip-group" id="cat-filters">
+        <button class="chip active" data-cat="all">All</button>
+        <button class="chip" data-cat="Napkins">Napkins</button>
+        <button class="chip" data-cat="Mats">Mats</button>
+        <button class="chip" data-cat="Small Fabrics">Small Fabrics</button>
+        <button class="chip" data-cat="Tissue & Liners">Tissue & Liners</button>
+        <button class="chip" data-cat="Large Textile">Large Textile</button>
+        <button class="chip chip-archive" data-cat="broken">Archive</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Quantity</div>
+        <div class="chip-group" id="qty-filters">
+          <button class="chip active" data-qty="all">All</button>
+          <button class="chip" data-qty="1">× 1</button>
+          <button class="chip" data-qty="2">× 2</button>
+          <button class="chip" data-qty="3+">× 3+</button>
+        </div>
+      </div>
+
+    <button class="reset-btn" id="reset">↺ Reset all filters</button>
+    </aside>
+  </div><!-- /sidebar-col -->
+
+  <!-- MAIN -->
+  <main>
+    <div class="results-bar">
+      <div id="color-header">
+        <div id="color-header-text" style="font-family:'Syne',sans-serif;font-size:25px;font-weight:700;line-height:1.1;color:var(--ink);">Napkins Catalog 2.0</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="results-count" id="results-count" style="margin-right:4px;"><span>—</span> items</div>
+        <select class="sort-select" id="sort">
+          <option value="default">Sort: Default</option>
+          <option value="cat">Category A–Z</option>
+          <option value="id">ID A–Z</option>
+        </select>
+        <button class="add-vessel-btn" id="add-item-btn" onclick="openAddModal()" style="display:none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Item
+        </button>
+        <button class="save-btn" id="save-btn" onclick="saveFile()" style="display:none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save
+        </button>
+      </div>
+    </div>
+
+    <div id="landing-banner">
+      <div id="landing-content"></div>
+    </div>
+    <div id="grid"></div>
+    <div id="empty">
+      <h3>No items found</h3>
+      <p>Try adjusting your filters or search terms.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  COLOR SWATCHES FOR TAGS
+// ─────────────────────────────────────────────
+const COLOR_SWATCHES = {
+  'Red': '#D94040', 'Green': '#4CAF50', 'Yellow/Orange': '#FFA726',
+  'Pink/Purple': '#CE93D8', 'Beige/Brown': '#BCAAA4', 'Blue': '#42A5F5',
+  'Gray/Black': '#616161', 'White': '#E0E0E0'
+};
+const COLOR_PREFIX = {
+  'Red':'r', 'Green':'g', 'Yellow/Orange':'yo', 'Pink/Purple':'pp',
+  'Beige/Brown':'bb', 'Blue':'bl', 'Gray/Black':'gb', 'White':'w'
+};
+const CAT_PREFIX = {
+  'Napkins':'nap', 'Mats':'mat', 'Small Fabrics':'sml',
+  'Tissue & Liners':'tis', 'Large Textile':'lrg'
+};
+
+// ─────────────────────────────────────────────
+//  DATA LOADER
+// ─────────────────────────────────────────────
+const COLOR_FILE_MAP = {
+  'Red':            'data/red.js',
+  'Green':          'data/green.js',
+  'Yellow/Orange':  'data/yellow-orange.js',
+  'Pink/Purple':    'data/pink-purple.js',
+  'Beige/Brown':    'data/beige-brown.js',
+  'Blue':           'data/blue.js',
+  'Gray/Black':     'data/gray-black.js',
+  'White':          'data/white.js'
+};
+
+// Globals that color data files will populate
+let IMAGES = {};
+let napkins = [];
+let _loadedColor = null;
+
+function loadColorData(color, callback) {
+  if (_loadedColor === color) {
+    callback();
+    return;
+  }
+  const file = COLOR_FILE_MAP[color];
+  if (!file) { callback(); return; }
+
+  const existing = document.getElementById('color-data-script');
+  if (existing) existing.remove();
+
+  IMAGES = {};
+  napkins = [];
+
+  const script = document.createElement('script');
+  script.id = 'color-data-script';
+  script.src = file + '?v=' + Date.now(); // cache bust during development
+  script.onload = () => {
+    _loadedColor = color;
+    callback();
+  };
+  script.onerror = () => {
+    console.warn('Color data file not found:', file);
+    _loadedColor = color;
+    callback();
+  };
+  document.head.appendChild(script);
+}
+
+function getImage(item_id) {
+  return IMAGES[item_id] || null;
+}
+
+let state = {
+  search: '',
+  category: 'all',
+  color: '',
+  qty: 'all',
+  sort: 'default'
+};
+
+// ─────────────────────────────────────────────
+//  FILTERING
+// ─────────────────────────────────────────────
+function matches(v) {
+  // Archive filter chip — show only archived
+  if (state.category === 'broken') {
+    if (!v.archive) return false;
+  } else {
+    // Normal views: apply category filter to both active and archived items
+    if (state.category !== 'all' && v.category !== state.category) return false;
+  }
+
+  if (state.color && v.color !== state.color) return false;
+
+  const vqty = v.qty || 1;
+  if (state.qty === '1'  && vqty !== 1)  return false;
+  if (state.qty === '2'  && vqty !== 2)  return false;
+  if (state.qty === '3+' && vqty < 3)    return false;
+
+  if (state.search) {
+    const q = state.search.toLowerCase();
+    const haystack = [v.name, v.category, v.color, v.notes].filter(Boolean).join(' ').toLowerCase();
+    if (!haystack.includes(q)) return false;
+  }
+
+  return true;
+}
+
+function sorted(list) {
+  // Always push archived items to the end
+  const active   = list.filter(v => !v.archive);
+  const archived = list.filter(v =>  v.archive);
+  function sort(arr) {
+    const copy = [...arr];
+    if (state.sort === 'cat') return copy.sort((a,b) => a.category.localeCompare(b.category));
+    if (state.sort === 'id')  return copy.sort((a,b) => (a.id||'').localeCompare(b.id||'', undefined, {numeric:true}));
+    return copy;
+  }
+  return [...sort(active), ...sort(archived)];
+}
+
+// ─────────────────────────────────────────────
+//  SELECT COLOR (from landing page color cards)
+// ─────────────────────────────────────────────
+function selectColor(name) {
+  const sel = document.getElementById('color-select');
+  sel.value = name;
+  sel.dispatchEvent(new Event('change'));
+}
+
+// ─────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────
+function render() {
+  const grid   = document.getElementById('grid');
+  const empty  = document.getElementById('empty');
+  const count  = document.getElementById('results-count');
+  const colorHeaderText = document.getElementById('color-header-text');
+  const addBtn = document.getElementById('add-item-btn');
+
+  addBtn.style.display = state.color ? 'flex' : 'none';
+
+  // No color selected — build and show landing page
+  const banner = document.getElementById('landing-banner');
+  if (!state.color) {
+    const meta = (typeof CATALOG_META !== 'undefined') ? CATALOG_META : { lastUpdated: null, colors: {} };
+    const lastUpdated = meta.lastUpdated || null;
+    const updatedStr = lastUpdated
+      ? new Date(lastUpdated + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+      : null;
+
+    const COLOR_ORDER = ['Red','Green','Yellow/Orange','Pink/Purple','Beige/Brown','Blue','Gray/Black','White'];
+    const CATEGORY_GUIDE = [
+      { icon: '🧻', name: 'Napkins',         desc: 'Table and cocktail napkins — cloth or paper, folded or flat, for place settings and styling.' },
+      { icon: '🧺', name: 'Mats',            desc: 'Placemats and table mats — woven, wood, or fabric surfaces that anchor a table setting.' },
+      { icon: '🧵', name: 'Small Fabrics',   desc: 'Small textile props — runners, doilies, and swatches used as accents or backdrops.' },
+      { icon: '🧾', name: 'Tissue & Liners', desc: 'Tissue paper, basket liners, and wraps used to line trays, baskets, and packaging.' },
+      { icon: '🧶', name: 'Large Textile',   desc: 'Larger fabric pieces — tablecloths, throws, and backdrop textiles for wider set dressing.' },
+      { icon: '🗃️', name: 'Archive',        desc: 'Items no longer in active inventory. Kept as reference records — still browsable, not currently available.' },
+    ];
+
+    const colorCardsHtml = COLOR_ORDER.map(name => {
+      const sw = COLOR_SWATCHES[name] || '#ccc';
+      const dotStyle = name === 'White' ? 'background:#fff;border:1.5px solid #ddd' : `background:${sw}`;
+      return `<div class="landing-color-card" onclick="selectColor('${name}')" title="Browse ${name}">
+        <span class="landing-color-dot" style="${dotStyle}"></span>
+        <span class="landing-color-name">${name}</span>
+      </div>`;
+    }).join('');
+
+    const catCardsHtml = CATEGORY_GUIDE.map(c => `
+      <div class="landing-cat-card">
+        <span class="landing-cat-icon">${c.icon}</span>
+        <div>
+          <div class="landing-cat-name">${c.name}</div>
+          <div class="landing-cat-desc">${c.desc}</div>
+        </div>
+      </div>`).join('');
+
+    const howtoSteps = [
+      { n:1, title:'Pick a color',                desc:'Use the Color dropdown in the left sidebar to load a color group. All item cards for that color will appear in the main area. You can also click any color card above to jump straight to it.' },
+      { n:2, title:'Filter by category or qty',   desc:'Use the Category and Quantity chips to narrow down results. The search bar works on names, categories, colors, and notes.' },
+      { n:3, title:'Read the item cards',          desc:'Each card shows the item photo, name, quantity badge, and category. Hover a card to reveal its ID in the top right corner.' },
+      { n:4, title:'Archived items',               desc:'Items marked with an X overlay are no longer available but kept as records. They appear at the bottom of their color view. Filter for them specifically using the Archive chip under Category.' },
+    ];
+    const howtoHtml = howtoSteps.map(s => `
+      <div class="howto-step">
+        <div class="howto-step-num">${s.n}</div>
+        <div>
+          <div class="howto-step-title">${s.title}</div>
+          <div class="howto-step-desc">${s.desc}</div>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('landing-content').innerHTML = `<div class="landing-wrap">
+      <div class="landing-section-label" style="margin-top:24px;">Colors</div>
+      <div class="landing-colors-grid">${colorCardsHtml}</div>
+      <div class="landing-two-col">
+        <div>
+          <div class="landing-section-label">Category guide</div>
+          <div class="landing-cats-grid">${catCardsHtml}</div>
+        </div>
+        <div>
+          <div class="landing-section-label">How to use</div>
+          <div class="landing-howto">${howtoHtml}</div>
+        </div>
+      </div>
+    </div>`;
+
+    banner.classList.add('show');
+    grid.style.display = 'none';
+    count.innerHTML = '<span>—</span> items';
+    colorHeaderText.style.color = 'var(--ink)';
+    colorHeaderText.innerHTML = 'Napkins Catalog 2.0' + (updatedStr ? `<span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:500;color:#999;margin-left:12px;"> / Last Updated: ${updatedStr}</span>` : '');
+    empty.classList.remove('show');
+    return;
+  }
+  banner.classList.remove('show');
+  grid.style.display = '';
+
+  // Update color header
+  const swatch = COLOR_SWATCHES[state.color] || '#1A1A18';
+  const headerColor = state.color === 'White' ? '#999' : swatch;
+  colorHeaderText.style.color = '';
+
+  let breadcrumb = `<span style="color:${headerColor}">${state.color}</span>`;
+  if (state.category && state.category !== 'all') {
+    breadcrumb += ` <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:500;color:var(--ink);"> / ${state.category === 'broken' ? 'Archive' : state.category}</span>`;
+  }
+  colorHeaderText.innerHTML = breadcrumb;
+
+  const filtered  = sorted(napkins.filter(matches));
+  const activeCount   = filtered.filter(v => !v.archive).length;
+  const archivedCount = filtered.filter(v =>  v.archive).length;
+  let countHtml = `<span>${activeCount}</span> item${activeCount !== 1 ? 's' : ''}`;
+  if (archivedCount > 0 && state.category !== 'broken') {
+    countHtml += ` <span style="color:var(--ink-faint);font-weight:400;">/ ${archivedCount} archived</span>`;
+  }
+  count.innerHTML = countHtml;
+
+  if (!filtered.length) {
+    grid.innerHTML = '';
+    empty.classList.add('show');
+    return;
+  }
+  empty.classList.remove('show');
+
+  grid.innerHTML = filtered.map((v, i) => {
+    const swatch = COLOR_SWATCHES[v.color] || '#ccc';
+    const imgPath = getImage(v.id);
+
+    return `
+    <div class="card" data-id="${v.id}" style="animation-delay:${Math.min(i*0.03, 0.4)}s">
+      <div class="card-img">
+        ${imgPath ? `<img class="lazy-img" data-src="${imgPath}" alt="${v.name}" style="width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.2s">` : ""}
+        ${v.archive ? `<div class="archived-overlay"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="8" y1="8" x2="32" y2="32"/><line x1="32" y1="8" x2="8" y2="32"/></svg></div>` : (v.qty||1) > 1 ? `<div class="qty-badge">× ${v.qty||1}</div>` : ""}
+        <button class="btn-replace-photo" title="Replace photo" onclick="replacePhoto('${v.id}', event)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <div class="card-img-placeholder" style="display:${imgPath ? 'none' : 'flex'}">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>${imgPath ? '' : 'Image coming'}</span>
+        </div>
+        <div class="color-stripe" style="background:${swatch}"></div>
+        <div class="id-tag">${v.id.toUpperCase()}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-title-wrap">
+            <div class="card-title" id="name-${v.id}">${v.name}</div>
+          </div>
+        </div>
+        ${v.notes ? `<div class="card-note" id="note-${v.id}">${v.notes}</div>` : ""}
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="tag color-tag" style="border-color:${swatch};color:${v.color==='White'?'#999':swatch};background:${v.color==='White'?'#fff':swatch+'1A'}">
+              <span class="tag-dot" style="background:${swatch}"></span>
+              ${v.color}
+            </span>
+            <span class="tag">${v.category}</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Lazy load: observe each card image and swap data-src → src on entry
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target.querySelector('.lazy-img');
+        if (img && img.dataset.src) {
+          img.src = img.dataset.src;
+          img.onload = () => {
+            img.style.opacity = '1';
+            const ph = entry.target.querySelector('.card-img-placeholder');
+            if (ph) ph.style.display = 'none';
+          };
+          delete img.dataset.src;
+        }
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  } else {
+    document.querySelectorAll('.lazy-img').forEach(img => {
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.style.opacity = '1';
+        const ph = img.closest('.card-img').querySelector('.card-img-placeholder');
+        if (ph) ph.style.display = 'none';
+      }
+    });
+  }
+}
+
+function bindChips(groupId, stateKey, dataAttr) {
+  document.getElementById(groupId).addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    document.querySelectorAll(`#${groupId} .chip`).forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    state[stateKey] = chip.dataset[dataAttr];
+    render();
+  });
+}
+
+bindChips('cat-filters', 'category', 'cat');
+document.getElementById('color-select').addEventListener('change', e => {
+  const val = e.target.value;
+  state.color = val;
+
+  const dot = document.getElementById('color-dot');
+  const sel = document.getElementById('color-select');
+  if (val && COLOR_SWATCHES[val]) {
+    const sw = COLOR_SWATCHES[val];
+    const isWhite = val === 'White';
+    dot.style.background = sw;
+    dot.style.opacity = '1';
+    sel.style.backgroundColor = isWhite ? '#fff' : sw + '1A';
+    sel.style.borderColor = sw;
+    sel.style.color = isWhite ? '#999' : sw;
+    const arrowColor = encodeURIComponent(isWhite ? '#999' : sw);
+    sel.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${arrowColor}'/%3E%3C/svg%3E")`;
+  } else {
+    dot.style.background = 'transparent';
+    dot.style.opacity = '0';
+    sel.style.backgroundColor = '';
+    sel.style.borderColor = '';
+    sel.style.color = '';
+    sel.style.backgroundImage = '';
+  }
+
+  if (val && COLOR_SWATCHES[val]) {
+    document.documentElement.style.setProperty('--accent', COLOR_SWATCHES[val]);
+    document.documentElement.style.setProperty('--accent-pale', COLOR_SWATCHES[val] + '22');
+  } else {
+    document.documentElement.style.removeProperty('--accent');
+    document.documentElement.style.removeProperty('--accent-pale');
+  }
+
+  if (val) {
+    const landingBanner = document.getElementById('landing-banner');
+    const gridEl = document.getElementById('grid');
+    landingBanner.classList.remove('show');
+    gridEl.style.display = '';
+    gridEl.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
+      <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:8px;">Loading…</h3>
+    </div>`;
+    document.getElementById('results-count').innerHTML = '<span>—</span> items';
+    loadColorDataWithSnapshot(val, () => { render(); });
+  } else {
+    render();
+  }
+});
+
+bindChips('qty-filters', 'qty', 'qty');
+
+document.getElementById('search').addEventListener('input', e => {
+  state.search = e.target.value.trim();
+  render();
+});
+
+document.getElementById('sort').addEventListener('change', e => {
+  state.sort = e.target.value;
+  render();
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  state = { search:'', category:'all', color:'', qty:'all', sort:'default' };
+  document.getElementById('search').value = '';
+  document.getElementById('sort').value = 'default';
+  document.getElementById('color-select').value = '';
+  const dot = document.getElementById('color-dot');
+  const sel = document.getElementById('color-select');
+  dot.style.background = 'transparent';
+  dot.style.opacity = '0';
+  sel.style.backgroundColor = '';
+  sel.style.borderColor = '';
+  sel.style.color = '';
+  sel.style.backgroundImage = '';
+  document.documentElement.style.removeProperty('--accent');
+  document.documentElement.style.removeProperty('--accent-pale');
+  const cht = document.getElementById('color-header-text');
+  cht.style.color = 'var(--ink)';
+  cht.innerHTML = 'Napkins Catalog 2.0';
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.cat === 'all' || c.dataset.qty === 'all');
+  });
+  render();
+});
+
+render();
+</script>
+
+<!-- EDIT ITEM MODAL -->
+<div class="edit-modal-overlay" id="edit-modal-overlay">
+  <div class="add-modal" style="position:relative;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;">
+      <span style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--ink);">Edit Item</span>
+      <span class="edit-id" id="edit-modal-id"></span>
+    </div>
+
+    <div class="add-modal-section">
+      <label>Photo</label>
+      <div class="edit-photo-area" id="edit-photo-area">
+        <input type="file" id="edit-photo-input" accept="image/*">
+        <div class="edit-photo-placeholder" id="edit-photo-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 9l4-4 3 3 4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          Click or drag to replace photo
+        </div>
+        <img id="edit-photo-preview" class="edit-photo-preview" style="display:none">
+      </div>
+    </div>
+
+    <div class="add-modal-section">
+      <label>Name / Visual Description</label>
+      <textarea id="edit-name" rows="1" placeholder="e.g. Square Napkin, Linen Beige, Frayed Edge, Woven Texture"></textarea>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;">
+      <div class="add-modal-section" style="margin-bottom:0">
+        <label>Color</label>
+        <select id="edit-color">
+          <option value="Red">Red</option>
+          <option value="Green">Green</option>
+          <option value="Yellow/Orange">Yellow / Orange</option>
+          <option value="Pink/Purple">Pink / Purple</option>
+          <option value="Beige/Brown">Beige / Brown</option>
+          <option value="Blue">Blue</option>
+          <option value="Gray/Black">Gray / Black</option>
+          <option value="White">White</option>
+        </select>
+      </div>
+      <div class="add-modal-section" style="margin-bottom:0">
+        <label>Category</label>
+        <select id="edit-category">
+          <option value="Napkins">Napkins</option>
+          <option value="Mats">Mats</option>
+          <option value="Small Fabrics">Small Fabrics</option>
+          <option value="Tissue & Liners">Tissue &amp; Liners</option>
+          <option value="Large Textile">Large Textile</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-qty-notes-row" style="grid-template-columns:1fr 1fr 6fr;">
+      <div class="add-modal-section modal-qty-field">
+        <label>Qty</label>
+        <input type="number" id="edit-qty" placeholder="1" step="1" min="1" value="1">
+      </div>
+      <label class="broken-check-wrap">
+        <span class="broken-field-label">Archive</span>
+        <input type="checkbox" id="edit-archive" class="broken-check-input">
+        <div class="broken-check-box">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+        </div>
+      </label>
+      <div class="add-modal-section modal-notes-field">
+        <label>Notes</label>
+        <input type="text" id="edit-notes" placeholder="e.g. Fragile, handle with care">
+      </div>
+    </div>
+
+    <div class="add-modal-footer">
+      <button class="add-cancel-btn" onclick="closeEditModal()">Cancel</button>
+      <button class="add-confirm-btn" onclick="saveAndExport()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD ITEM MODAL -->
+<div class="add-modal-overlay" id="add-modal-overlay">
+  <div class="add-modal">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;">
+      <h3 style="margin:0;padding:0;">Add New Item</h3>
+      <span id="add-generated-id" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;"></span>
+    </div>
+
+    <div class="add-modal-section">
+      <label>Photo</label>
+      <div class="add-photo-area" id="add-photo-area">
+        <input type="file" id="add-photo-input" accept="image/*">
+        <div class="add-photo-placeholder" id="add-photo-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 9l4-4 3 3 4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          Click or drag to upload photo
+        </div>
+        <img id="add-photo-preview" class="add-photo-preview" style="display:none">
+      </div>
+    </div>
+
+    <div class="add-modal-section">
+      <label>Name / Visual Description</label>
+      <textarea id="add-name" rows="1" placeholder="e.g. Square Napkin, Linen Beige, Frayed Edge, Woven Texture"></textarea>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;">
+      <div class="add-modal-section" style="margin-bottom:0">
+        <label>Color</label>
+        <select id="add-color">
+          <option value="Red">Red</option>
+          <option value="Green">Green</option>
+          <option value="Yellow/Orange">Yellow / Orange</option>
+          <option value="Pink/Purple">Pink / Purple</option>
+          <option value="Beige/Brown">Beige / Brown</option>
+          <option value="Blue">Blue</option>
+          <option value="Gray/Black">Gray / Black</option>
+          <option value="White">White</option>
+        </select>
+      </div>
+      <div class="add-modal-section" style="margin-bottom:0">
+        <label>Category</label>
+        <select id="add-category">
+          <option value="Napkins">Napkins</option>
+          <option value="Mats">Mats</option>
+          <option value="Small Fabrics">Small Fabrics</option>
+          <option value="Tissue & Liners">Tissue &amp; Liners</option>
+          <option value="Large Textile">Large Textile</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-qty-notes-row">
+      <div class="add-modal-section modal-qty-field">
+        <label>Qty</label>
+        <input type="number" id="add-qty" placeholder="1" step="1" min="1" value="1">
+      </div>
+      <label class="broken-check-wrap">
+        <span class="broken-field-label">Archive</span>
+        <input type="checkbox" id="add-archive" class="broken-check-input">
+        <div class="broken-check-box">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+        </div>
+      </label>
+      <div class="add-modal-section modal-notes-field">
+        <label>Notes</label>
+        <input type="text" id="add-notes" placeholder="e.g. Fragile, handle with care">
+      </div>
+    </div>
+
+    <div class="add-modal-footer">
+      <button class="add-cancel-btn" id="add-cancel-btn" onclick="closeAddModal()">Cancel</button>
+      <button class="add-confirm-btn" id="add-confirm-btn" onclick="addToCatalog()">Add to Catalog</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  UNSAVED CHANGES TRACKING (per-color)
+// ─────────────────────────────────────────────
+let editTargetId = null;
+let editPendingImageB64 = null;
+
+const dirtyColors = new Set();
+
+function markDirty() {
+  if (_loadedColor) dirtyColors.add(_loadedColor);
+  document.getElementById('save-btn').style.display = 'flex';
+}
+
+function serializeColorJs(color) {
+  let out = '';
+  out += `// ${color} napkins data\n`;
+  out += `napkins = ${JSON.stringify(napkins, null, 2)};\n\n`;
+  out += `IMAGES = {\n`;
+  const imgEntries = Object.entries(IMAGES);
+  imgEntries.forEach(([k, v], i) => {
+    const comma = i < imgEntries.length - 1 ? ',' : '';
+    out += `  '${k}': '${v}'${comma}\n`;
+  });
+  out += `};\n`;
+  return out;
+}
+
+function saveFile() {
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(2);
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const datePrefix = `${yy}${mm}${dd}`;
+
+  dirtyColors.forEach(color => {
+    const colorKey = COLOR_FILE_MAP[color]
+      .replace('data/', '')
+      .replace('.js', '');
+    const filename = `${datePrefix}-${colorKey}.js`;
+
+    if (color === _loadedColor) {
+      const content = serializeColorJs(color);
+      const blob = new Blob([content], { type: 'application/javascript' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    } else if (_colorSnapshots[color]) {
+      const snap = _colorSnapshots[color];
+      const blob = new Blob([snap], { type: 'application/javascript' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+  });
+
+  dirtyColors.clear();
+  document.getElementById('save-btn').style.display = 'none';
+}
+
+const _colorSnapshots = {};
+
+const _origLoadColorData = loadColorData;
+function loadColorDataWithSnapshot(color, callback) {
+  if (_loadedColor && dirtyColors.has(_loadedColor) && color !== _loadedColor) {
+    _colorSnapshots[_loadedColor] = serializeColorJs(_loadedColor);
+  }
+  _origLoadColorData(color, callback);
+}
+
+function replacePhoto(itemId, event) {
+  event.stopPropagation();
+  openEditModal(itemId);
+}
+
+function startNameEdit(itemId, event) {
+  event.stopPropagation();
+  const v = napkins.find(x => x.id === itemId);
+  if (!v) return;
+  const titleEl = document.getElementById('name-' + itemId);
+  if (!titleEl || titleEl.querySelector('textarea')) return;
+
+  const currentName = v.name;
+  const ta = document.createElement('textarea');
+  ta.className = 'name-edit-input';
+  ta.value = currentName;
+  ta.rows = 1;
+
+  titleEl.innerHTML = '';
+  titleEl.appendChild(ta);
+
+  function autoSize() {
+    ta.style.height = 'auto';
+    ta.style.height = ta.scrollHeight + 'px';
+  }
+  autoSize();
+  ta.addEventListener('input', autoSize);
+
+  ta.focus();
+  ta.selectionStart = ta.selectionEnd = ta.value.length;
+
+  function save() {
+    const newName = ta.value.trim() || currentName;
+    v.name = newName;
+    titleEl.textContent = newName;
+    markDirty();
+  }
+
+  ta.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); ta.blur(); }
+    if (e.key === 'Escape') { v.name = currentName; titleEl.textContent = currentName; }
+  });
+  ta.addEventListener('blur', save);
+}
+
+// ─────────────────────────────────────────────
+//  EDIT MODAL
+// ─────────────────────────────────────────────
+function openEditModal(itemId) {
+  const v = napkins.find(x => x.id === itemId);
+  if (!v) return;
+  editTargetId = itemId;
+  editPendingImageB64 = null;
+
+  document.getElementById('edit-modal-id').textContent = v.id.toUpperCase();
+
+  const nameInput = document.getElementById('edit-name');
+  nameInput.value = v.name;
+  setTimeout(() => autoGrow(nameInput), 0);
+
+  const preview = document.getElementById('edit-photo-preview');
+  const placeholder = document.getElementById('edit-photo-placeholder');
+  const area = document.getElementById('edit-photo-area');
+  const existingImg = IMAGES[itemId];
+  if (existingImg) {
+    preview.src = existingImg;
+    preview.style.display = 'block';
+    placeholder.style.display = 'none';
+    area.classList.add('has-photo');
+  } else {
+    preview.src = '';
+    preview.style.display = 'none';
+    placeholder.style.display = 'block';
+    area.classList.remove('has-photo');
+  }
+
+  document.getElementById('edit-color').value = v.color || 'White';
+  document.getElementById('edit-category').value = v.category || 'Napkins';
+  document.getElementById('edit-qty').value = v.qty != null ? v.qty : 1;
+  document.getElementById('edit-notes').value = v.notes || '';
+  document.getElementById('edit-archive').checked = !!v.archive;
+
+  document.getElementById('edit-modal-overlay').classList.add('open');
+}
+
+function closeEditModal() {
+  editTargetId = null;
+  document.getElementById('edit-modal-overlay').classList.remove('open');
+}
+
+function saveAndExport() {
+  if (!editTargetId) return;
+  const v = napkins.find(x => x.id === editTargetId);
+  if (!v) return;
+
+  const newName = document.getElementById('edit-name').value.trim();
+  if (newName) v.name = newName;
+
+  const newColor = document.getElementById('edit-color').value;
+  const newCat = document.getElementById('edit-category').value;
+  if (newColor) v.color = newColor;
+  if (newCat) v.category = newCat;
+
+  const newQty = parseInt(document.getElementById('edit-qty').value);
+  if (!isNaN(newQty) && newQty > 0) v.qty = newQty; else delete v.qty;
+  const newNotes = document.getElementById('edit-notes').value.trim();
+  if (newNotes) v.notes = newNotes; else delete v.notes;
+
+  const newArchive = document.getElementById('edit-archive').checked;
+  if (newArchive) { v.archive = true; } else { delete v.archive; }
+
+  if (editPendingImageB64) {
+    IMAGES[editTargetId] = editPendingImageB64;
+  }
+
+  markDirty();
+  closeEditModal();
+  render();
+}
+
+document.getElementById('edit-modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeEditModal();
+});
+
+function autoGrow(el) {
+  el.style.height = '0';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+(function() {
+  document.getElementById('edit-name').addEventListener('input', function() { autoGrow(this); });
+
+  document.getElementById('edit-photo-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > 800) { h = Math.round(h * 800 / w); w = 800; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        editPendingImageB64 = canvas.toDataURL('image/jpeg', 0.9);
+        const preview = document.getElementById('edit-photo-preview');
+        preview.src = editPendingImageB64;
+        preview.style.display = 'block';
+        document.getElementById('edit-photo-placeholder').style.display = 'none';
+        document.getElementById('edit-photo-area').classList.add('has-photo');
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+})();
+
+// ─────────────────────────────────────────────
+//  ADD MODAL
+// ─────────────────────────────────────────────
+let addPendingImageB64 = null;
+
+function getNextId(color, category) {
+  const cp = COLOR_PREFIX[color] || 'x';
+  const cat = CAT_PREFIX[category] || 'x';
+  const prefix = cp + '-' + cat + '-';
+  const nums = napkins
+    .filter(v => v.id && v.id.startsWith(prefix))
+    .map(v => parseInt(v.id.replace(prefix, ''), 10))
+    .filter(n => !isNaN(n));
+  const next = nums.length ? Math.max.apply(null, nums) + 1 : 1;
+  return prefix + next;
+}
+
+function updateGeneratedId() {
+  const color = document.getElementById('add-color').value;
+  const cat = document.getElementById('add-category').value;
+  const id = getNextId(color, cat);
+  document.getElementById('add-generated-id').innerHTML = `ID: <span>${id.toUpperCase()}</span>`;
+}
+
+function openAddModal() {
+  if (!state.color) return;
+  addPendingImageB64 = null;
+  document.getElementById('add-photo-input').value = '';
+  document.getElementById('add-photo-preview').style.display = 'none';
+  document.getElementById('add-photo-placeholder').style.display = 'block';
+  document.getElementById('add-photo-area').classList.remove('has-photo');
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-color').value = state.color;
+  document.getElementById('add-category').value = state.category !== 'all' && state.category !== 'broken' ? state.category : 'Napkins';
+  document.getElementById('add-qty').value = 1;
+  document.getElementById('add-notes').value = '';
+  document.getElementById('add-archive').checked = false;
+  updateGeneratedId();
+  document.getElementById('add-modal-overlay').classList.add('open');
+}
+
+function closeAddModal() {
+  document.getElementById('add-modal-overlay').classList.remove('open');
+}
+
+function addToCatalog() {
+  const name = document.getElementById('add-name').value.trim();
+  if (!name) { alert('Please enter a name / visual description.'); return; }
+
+  const color = document.getElementById('add-color').value;
+  const category = document.getElementById('add-category').value;
+  const id = getNextId(color, category);
+
+  const item = { id, color, category, name };
+
+  const qty = parseInt(document.getElementById('add-qty').value);
+  if (!isNaN(qty) && qty > 0) item.qty = qty;
+
+  const notes = document.getElementById('add-notes').value.trim();
+  if (notes) item.notes = notes;
+
+  if (document.getElementById('add-archive').checked) item.archive = true;
+
+  napkins.push(item);
+  if (addPendingImageB64) IMAGES[id] = addPendingImageB64;
+
+  markDirty();
+  closeAddModal();
+  render();
+}
+
+document.getElementById('add-modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeAddModal();
+});
+document.getElementById('add-color').addEventListener('change', updateGeneratedId);
+document.getElementById('add-category').addEventListener('change', updateGeneratedId);
+document.getElementById('add-name').addEventListener('input', function() { autoGrow(this); });
+
+(function() {
+  document.getElementById('add-photo-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > 800) { h = Math.round(h * 800 / w); w = 800; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        addPendingImageB64 = canvas.toDataURL('image/jpeg', 0.9);
+        const preview = document.getElementById('add-photo-preview');
+        preview.src = addPendingImageB64;
+        preview.style.display = 'block';
+        document.getElementById('add-photo-placeholder').style.display = 'none';
+        document.getElementById('add-photo-area').classList.add('has-photo');
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+})();
+
+// ── PASSWORD GATE ──
+(function() {
+  const CORRECT = 'pknapkins2026';
+  const SESSION_KEY = 'pk_napkins_catalog_auth';
+
+  const gate = document.getElementById('pw-gate');
+  const input = document.getElementById('pw-input');
+  const submit = document.getElementById('pw-submit');
+  const errorMsg = document.getElementById('pw-error');
+
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    gate.classList.add('hidden');
+  } else {
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function attempt() {
+    if (input.value === CORRECT) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      gate.classList.add('hidden');
+    } else {
+      errorMsg.textContent = 'Incorrect password';
+      input.classList.add('error');
+      input.value = '';
+      setTimeout(() => {
+        input.classList.remove('error');
+        errorMsg.textContent = '';
+        input.focus();
+      }, 800);
+    }
+  }
+
+  submit.addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+})();
+</script>
+</body>
+</html>

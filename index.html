@@ -9,6 +9,15 @@
 <script src="data/meta.js"></script>
 <style>
 
+  /* ── LOGO FONT ── */
+  @font-face {
+    font-family: 'Engineer Heavy';
+    src: url('assets/fonts/engineer-heavy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   /* ── PASSWORD GATE ── */
   #pw-gate {
     position: fixed;
@@ -28,7 +37,7 @@
     width: 320px;
   }
   .pw-logo {
-    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'Engineer Heavy', 'Barlow Semi Condensed', sans-serif;
     font-size: 26px;
     color: #fff;
     letter-spacing: 0;
@@ -134,14 +143,16 @@
   }
 
   .logo {
-    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'Engineer Heavy', 'Barlow Semi Condensed', sans-serif;
     font-weight: 400;
     font-size: 23px;
     letter-spacing: 0;
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   }
+  .logo:hover { opacity: 0.82; }
 
   .header-meta {
     font-size: 11px;
@@ -612,12 +623,21 @@
   }
   #landing-banner.show { display: block; }
   #landing-banner-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    object-position: center 40%;
-    border-radius: 10px;
     display: block;
+    width: 100%;
+    aspect-ratio: 2656 / 1214;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--tag-bg);
+  }
+  /* At medium screens and up, fill the full container width at a fixed
+     height instead — cropping via object-fit: cover, no pillarboxing. */
+  @media (min-width: 1440px) {
+    #landing-banner-img {
+      height: 450px;
+      aspect-ratio: unset;
+      object-fit: cover;
+    }
   }
   .landing-wrap { padding: 0 0 40px; }
   .landing-section-label {
@@ -1644,7 +1664,7 @@ document.getElementById('sort').addEventListener('change', e => {
   render();
 });
 
-document.getElementById('reset').addEventListener('click', () => {
+function resetToLanding() {
   state = { search:'', category:'all', color:'', qty:'all', sort:'default' };
   document.getElementById('search').value = '';
   document.getElementById('sort').value = 'default';
@@ -1666,7 +1686,10 @@ document.getElementById('reset').addEventListener('click', () => {
     c.classList.toggle('active', c.dataset.cat === 'all' || c.dataset.qty === 'all');
   });
   render();
-});
+}
+
+document.getElementById('reset').addEventListener('click', resetToLanding);
+document.querySelector('.logo').addEventListener('click', resetToLanding);
 
 render();
 </script>
@@ -2160,7 +2183,7 @@ document.getElementById('add-name').addEventListener('input', function() { autoG
 
 // ── PASSWORD GATE ──
 (function() {
-  const CORRECT = 'pknapkins2026';
+  const CORRECT = 'pkprops2026';
   const SESSION_KEY = 'pk_napkins_catalog_auth';
 
   const gate = document.getElementById('pw-gate');

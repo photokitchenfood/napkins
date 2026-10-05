@@ -8,10 +8,10 @@ const CATALOG_META = {
       "count": 117
     },
     "gray-black": {
-      "count": 78
+      "count": 79
     },
     "green": {
-      "count": 95
+      "count": 96
     },
     "pink-purple": {
       "count": 49
